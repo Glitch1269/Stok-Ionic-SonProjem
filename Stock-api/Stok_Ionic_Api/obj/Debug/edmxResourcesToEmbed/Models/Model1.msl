@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBStokModelStoreContainer" CdmEntityContainer="DBStokEntities9">
+    <EntitySetMapping Name="Item">
+      <EntityTypeMapping TypeName="DBStokModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="itemId" ColumnName="itemId" />
+          <ScalarProperty Name="itemKatTur" ColumnName="itemKatTur" />
+          <ScalarProperty Name="itemAdi" ColumnName="itemAdi" />
+          <ScalarProperty Name="itemMiktar" ColumnName="itemMiktar" />
+          <ScalarProperty Name="itemKayitTarih" ColumnName="itemKayitTarih" />
+          <ScalarProperty Name="itemDuzenlenmeTarih" ColumnName="itemDuzenlenmeTarih" />
+          <ScalarProperty Name="itemResim" ColumnName="itemResim" />
+          <ScalarProperty Name="itemPng" ColumnName="itemPng" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="DBStokModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="katId" ColumnName="katId" />
+          <ScalarProperty Name="katAdi" ColumnName="katAdi" />
+          <ScalarProperty Name="katLogo" ColumnName="katLogo" />
+          <ScalarProperty Name="katResim" ColumnName="katResim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kayit">
+      <EntityTypeMapping TypeName="DBStokModel.Kayit">
+        <MappingFragment StoreEntitySet="Kayit">
+          <ScalarProperty Name="kayitId" ColumnName="kayitId" />
+          <ScalarProperty Name="kayitItemId" ColumnName="kayitItemId" />
+          <ScalarProperty Name="kayitKatId" ColumnName="kayitKatId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
