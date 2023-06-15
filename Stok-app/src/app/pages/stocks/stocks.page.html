@@ -1,0 +1,147 @@
+
+<ion-content >
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Anasayfa Menü</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <h2 style="margin-left: 70px;">Tüm Ürünler </h2>
+      <div>
+       <ion-button style="margin-top: 20px;" expand="block" fill="outline" shape="round" *ngFor="let item of items" [routerLink] = "['/itemlistele',item.itemId]">
+        {{item.itemAdi}}
+       </ion-button>
+      </div>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title style="font-size: x-large;">Stok Anasayfa</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      
+    
+
+  <ion-card *ngFor=" let item of items" style="width: 715px;height: 620px;margin-top: 20px ; display: flex;border-radius: 30px;">
+    <div style="display: flex;flex-wrap: wrap;" >
+    <img src="{{item.itemResim}}" alt="{{item.itemResim}}"  class="text-center"  style="height: 350px; width: 350px;margin-top: 120px;margin-left:20px;border-radius: 30px;" >
+    </div>
+    <div style="display: flex;flex-wrap: wrap; width: 350px;" >
+  
+      <ion-card-title style="font-size: xx-large; margin-left: 70px;padding-top: 150px;"> - {{item.itemAdi}} -</ion-card-title>
+   
+      <ion-card-content >
+        <ion-item>
+          <ion-label style="font-size: x-large;">Ürün Adı : {{item.itemAdi}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: x-large;">Ürün Kategori : {{item.itemKatTur}}</ion-label>
+        </ion-item>
+         <ion-item>
+          <ion-label style="font-size: x-large;" >Ürün Stok Durumu : <b>{{item.itemMiktar}}</b></ion-label>
+        </ion-item>
+
+      </ion-card-content>
+
+      
+      <ion-button [routerLink] = "['/itemlistele',item.itemId]" style="margin-left: 50px;margin-right: 20px;"
+      expand="" fill="outline" shape="round" color="primary">
+        Detay
+      </ion-button>
+
+      <ion-button (click)="Sil(item)" expand="" fill="outline" shape="round" color="danger">
+        Item Sil
+      </ion-button>
+    
+    </div>
+  </ion-card>
+
+    
+    </ion-content>
+  </div>
+
+
+   <!-- Item Ekle -->
+
+   <ion-fab slot="fixed" vertical="bottom" horizontal="end" style=" margin-bottom: 15px; margin-right: 25px;">
+    <ion-fab-button (click)="setOpen(true)">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+<ion-modal [isOpen]="isModalOpen">
+<ng-template >
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>İtem Ekle</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="setOpen(false)">Kapat</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <form [formGroup]="itemEkle" (ngSubmit)="Console()">
+      <ion-item>
+        <ion-label position="floating"
+          >Item Adı : <ion-text color="danger"></ion-text></ion-label
+        >
+        <ion-input required formControlName="itemAdi" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item >
+        <ion-label>Kategori Seç :</ion-label>
+          <ion-select  formControlName="itemKatTur">
+            <ion-select-option  value="{{kat.katAdi}}" *ngFor="let kat of categories" >{{kat.katAdi}}</ion-select-option>
+       
+          </ion-select>
+      </ion-item>  
+      
+
+      <ion-item>
+        <ion-label position="floating"
+          >Miktar : <ion-text color="danger"></ion-text>
+        </ion-label>
+        <ion-input required  formControlName="itemMiktar"type="text" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"
+          >Resim : <ion-text color="danger"></ion-text>
+        </ion-label>
+        <ion-input required  formControlName="itemResim" type="text"></ion-input>
+      </ion-item>
+
+
+      <ion-button (click)="ItemEkle()" expand="block" fill="clear" shape="round"  [disabled]="!itemEkle.valid">
+        Kaydet
+      </ion-button>
+    </form>
+  </ion-content> 
+ </ng-template>
+
+</ion-modal> 
+
+
+</ion-content>
+
+
+
+
+<ion-tab-bar slot="bottom">
+<ion-tab-button routerLink="../stocks">
+  <ion-icon name="home"></ion-icon>
+  <ion-label>Home</ion-label>
+</ion-tab-button>
+
+<ion-tab-button routerLink="../kategori">
+  <ion-icon name="home"></ion-icon>
+  <ion-label>Kategori</ion-label>
+</ion-tab-button>
+
+
